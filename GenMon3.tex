@@ -1,0 +1,95 @@
+\documentclass[sort&compress]{elsarticle}
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage[all]{xy}
+\usepackage{cite}
+\usepackage{url}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand\hide[1]{}
+\newcommand\key[1]{\emph{#1}\label{#1}}
+\newcommand\cat\mathcal
+\newcommand\set[1]{\left\{#1\right\}}
+\newcommand\exlex{_\mathrm{ex/lex}}\newcommand\exreg{_\mathrm{ex/reg}}
+\newcommand\of:
+
+\begin{document}
+\begin{frontmatter}
+\title{Resolvent embeddings}
+
+\author[W. P. Stekelenburg]{Wouter Pieter Stekelenburg}
+\address{Faculty of Mathematics, Informatics and Mechanics,
+University of Warsaw,
+Banacha 2,
+02-097 Warszawa,
+Poland}
+\ead{w.p.stekelenburg@gmail.com}
+\fntext[W. P. Stekelenburg]{Corresponding author; tel.: +31624543216}
+
+\begin{abstract}
+\end{abstract}
+
+\begin{keyword}
+\end{keyword}
+
+%AMS 18A22
+
+\end{frontmatter}
+
+
+\section{Resolvent Embeddings}
+As the title suggests this paper is about the following kind of functor.
+
+\begin{definition} Let $F\of \cat C\to\cat D$ be an arbitrary functor. For each object $X$ of $\cat D$, a \key{resolution} is an object $Y$ of $\cat C$ and a morphism $r\of FY \to X$ with the following two properties.
+\begin{enumerate} 
+\item The morphism $r$ is a regular epimorphism.
+\item For each morphism $f\of FZ\to X$ there is an $g\of Z\to Y$ such that $f=r\circ Fg$. 
+\[ \xymatrix{
+& FY \ar[d]^{r} \\
+FZ\ar[r]_f \ar@{.>}[ur]^{Fg} & X
+}\]
+\end{enumerate}
+A functor $F:\cat C\to\cat D$ is \key{resolvent} if each object of $\cat D$ has a resolution. A \emph{resolvent embedding} is a resolvent functor that is also fully faithful.
+\end{definition}
+
+Resolvent embeddings are particularly interesting when they are also \emph{ex/reg completions}.\hide{Clarify that we are talking about the functors and why.}
+
+\begin{theorem} Let $F:\cat C\to\cat C\exlex$ be the ex/reg completion of a regular category $\cat C$, let $G\of \cat C \to \cat C\exlex$ be the ex/lex completion and let $H$ be the up to isomorphism unique functor $H\of\cat C\exreg \to \cat C\exlex$ that satisfies $HG\simeq F$. 
+The following are equivalent.
+\begin{enumerate}
+\item $F$ is resolvent.
+\item $H$ has a right adjoint right inverse.
+\item For each exact $\cat D$, each functor $K\of \cat C \to \cat D$ that preserves finite limits has a left Kan extension along $F$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hide{Point ahead to lemmas down this paper}
+\end{proof}
+
+Resolvent embeddings also a role in topos theory.
+
+\begin{theorem} Let $F:\cat C\to\cat C\exlex$ be the ex/reg completion of a regular category $\cat C$, then the following are equivalent.
+\begin{enumerate}
+\item $\cat C$ has \emph{weak dependent products} and a \emph{generic monomorphism}. \hide{these need to be defined somewhere}
+\item $\cat C\exreg$ is a topos and $F$ is resolvent. 
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\hide{Point ahead to lemmas down this paper}
+\end{proof}
+
+\hide{conclusion... }
+
+\end{document}
+
