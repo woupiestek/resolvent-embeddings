@@ -61,22 +61,36 @@ FZ\ar[r]_f \ar@{.>}[ur]^{Fg} & X
 A functor $F:\cat C\to\cat D$ is \key{resolvent} if each object of $\cat D$ has a resolution. A \emph{resolvent embedding} is a resolvent functor that is also fully faithful.
 \end{definition}
 
-Resolvent embeddings are particularly interesting when they are also \emph{ex/reg completions}.\hide{Clarify that we are talking about the functors and why.}
+Resolvent embeddings are particularly interesting when they are also \emph{ex/reg completions}.
 
-\begin{theorem} Let $F:\cat C\to\cat C\exlex$ be the ex/reg completion of a regular category $\cat C$, let $G\of \cat C \to \cat C\exlex$ be the ex/lex completion and let $H$ be the up to isomorphism unique functor $H\of\cat C\exreg \to \cat C\exlex$ that satisfies $HG\simeq F$. 
+\begin{definition} A regular functor $F\of\cat C\to\cat D$ from a regular category $\cat C$ to an exact category $\cat D$ is an \key{ex/reg completion} of $\cat C$ if every regular functor $G\of \cat C\to\cat E$ to an exact category $\cat E$ factors through $F$ up to isomorphism in an up to isomorphism unique way.
+
+A finite limit preserving functor $F\of\cat C\to\cat D$ from a category with finite limits $\cat C$ to an exact category $\cat D$ is an \key{ex/lex completion} of $\cat C$ if every finite limit preserving functor $G\of \cat C\to\cat E$ to an exact category factors through $F$ up to isomorphism in an up to isomorphism unique way.
+\end{definition}\hide{It is clear that completions are fully faithful? How does this follow from the universal property?}
+
+\begin{theorem} Let $F:\cat C\to\cat C\exreg$ be an ex/reg completion of a regular category $\cat C$, let $G\of \cat C \to \cat C\exlex$ be the ex/lex completion and let $H$ be the up to isomorphism unique functor $H\of\cat C\exreg \to \cat C\exlex$ that satisfies $HG\simeq F$. 
 The following are equivalent.
 \begin{enumerate}
 \item $F$ is resolvent.
-\item $H$ has a right adjoint right inverse.
+\item $H$ has a fully faithful right adjoint.
 \item For each exact $\cat D$, each functor $K\of \cat C \to \cat D$ that preserves finite limits has a left Kan extension along $F$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\hide{Point ahead to lemmas down this paper}
+\hide{Point ahead to lemmas down this paper
+
+ThA -> LKE,converse,adjunct
+adjunct -> LKE
+
+
+ThB -> lccc, closubclass, ...
+
+
+}
 \end{proof}
 
-Resolvent embeddings also a role in topos theory.
+Resolvent embeddings also play a role in topos theory.
 
 \begin{theorem} Let $F:\cat C\to\cat C\exlex$ be the ex/reg completion of a regular category $\cat C$, then the following are equivalent.
 \begin{enumerate}
@@ -90,6 +104,34 @@ Resolvent embeddings also a role in topos theory.
 \end{proof}
 
 \hide{conclusion... }
+
+\section{Kan extensions}
+
+\begin{definition} In any category $\cat C$, a \key{weak groupoid} $\wgrpg{x}$ is a tuple $(X_0,X_1,c:X_1\to X_0,d:X_1\to X_0,i:X_0\to X_1)$ such that
+
+
+\end{definition}
+
+
+\newcommand\di{_!}
+\begin{lemma} Let $F\cat C\to\cat D$ be both a resolvent embedding and a ex/reg completion. Each finite limit preserving functor $G\cat C\to\cat E$ has a left Kan extension $F\di(G)$ along $F$. \end{lemma}
+
+\newcommand\wgrpd\mathbf
+\begin{proof}
+For each object $D$ of $\cat D$ there is a weak groupoid $\wgrpd D$ in $\cat C$ such that a resolution of $D$ is the coequalizer of $\wgrpd$. %def %lemma
+The functor $G$ sends $D$ to a weak groupoid $G(D)$ because it preserves finite limits. %check/remark/note
+Let $F\di(G)(D)$ the the coequalizer of $G(\wgprpd D)$.
+
+Each morphism $d\of D\to D'$ of $\cat D$ induces a morphism of weak groupoids $\wgrpd{d}:\wgrpd{D}\to\wgrpd{D'}$. %because of the resolutions!
+%def %lemma
+The functor $G$ sends $\wgrpd{d}$ to a morphism of weak groupoids $\wgrpd{d}$. %check/remark/note
+Let $F\di(G)(d)$ be the morphism that $G(\wgrpd{d})$ induces between $F\di(G)(D)$ and $F\di(G)(D')$.
+
+%What do we need to prove exactly?
+%F\di(G)
+
+\end{proof}
+
 
 \end{document}
 
