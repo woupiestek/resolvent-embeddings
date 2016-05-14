@@ -1,4 +1,4 @@
-\documentclass[sort&compress]{elsarticle}
+\documentclass[sort&compress,draft]{elsarticle}
 \usepackage{amssymb, amsmath, amsthm}
 \usepackage[all]{xy}
 \usepackage{cite}
@@ -21,6 +21,12 @@
 \newcommand\set[1]{\left\{#1\right\}}
 \newcommand\exlex{_\mathrm{ex/lex}}\newcommand\exreg{_\mathrm{ex/reg}}
 \newcommand\of:
+\newcommand\ri{^*}
+\newcommand\id{\mathrm{id}}
+\newcommand\dom{\mathrm{dom}}
+\newcommand\cod{\mathrm{cod}}
+\newcommand\di{_!}
+
 
 \begin{document}
 \begin{frontmatter}
@@ -68,7 +74,10 @@ Resolvent embeddings are particularly interesting when they are also \emph{ex/re
 A finite limit preserving functor $F\of\cat C\to\cat D$ from a category with finite limits $\cat C$ to an exact category $\cat D$ is an \key{ex/lex completion} of $\cat C$ if every finite limit preserving functor $G\of \cat C\to\cat E$ to an exact category factors through $F$ up to isomorphism in an up to isomorphism unique way.
 \end{definition}\hide{It is clear that completions are fully faithful? How does this follow from the universal property?}
 
-\begin{theorem} Let $F:\cat C\to\cat C\exreg$ be an ex/reg completion of a regular category $\cat C$, let $G\of \cat C \to \cat C\exlex$ be the ex/lex completion and let $H$ be the up to isomorphism unique functor $H\of\cat C\exreg \to \cat C\exlex$ that satisfies $HG\simeq F$. 
+\begin{example} An ex/lex completion $F\of\cat C\to\cat C\exlex$ is a resolvent embedding, because it embeds $\cat C$ as a subcategory of projective objects. \hide{cite for both definitions and theorems} \end{example}
+
+
+\begin{theorem} Let $F:\cat C\to\cat C\exreg$ be an ex/reg completion of a regular category $\cat C$, let $G\of \cat C \to \cat C\exlex$ be the ex/lex completion and let $H$ be one of the up to isomorphism unique functors $H\of\cat C\exlex \to \cat C\exreg$ that satisfy $HG\simeq F$. 
 The following are equivalent.
 \begin{enumerate}
 \item $F$ is resolvent.
@@ -77,23 +86,19 @@ The following are equivalent.
 \end{enumerate}
 \end{theorem}
 
-\begin{proof} Lemma \ref{resolvent to left} show that 1 implies 3 and lemma \ref{left to resolvent} shows that 3 implies 1 because ex/reg completions are fully faithful and preserve finite limits.
+\newcommand\Cat\mathsf
+\newcommand\dual{^{op}}
+\begin{proof} 
+Lemma \ref{resolvent to left} show that 1 implies 3 and lemma \ref{left to resolvent} shows that 3 implies 1 because ex/reg completions are fully faithful and preserve finite limits.
 
+%1 -> 2
+Assume 1. Lemma \ref{resolvent to left} show that there is a finite limit preserving left Kan extension $F\di(G)$ of $G$ along $F$ such that $F\di(G)F\simeq G$. Since $G$ is fully faithful, so is $F\di(G)$. The universal property of $G$ extends the composed isomorphisms $G \simeq F\di(G)F\simeq F\di(G)HG$ to an isomorphism $\id_{\cat C\exlex}\simeq F\di(G)H$, where $\id_{\cat C\exlex}$ is the identity functor of $\cat C\exlex$, which serves as the unit of the adjunction $H \dashv F\di(G)$. Because the universal properties of $F$ are weaker then those of $G$, the isomorphisms $HF\di(G)F\simeq HG\simeq F$ only extend to a natural transformation $HF\di(G)\to \id_{\cat C\exlex}$ which serves as the counit of the same adjunction.
 
+%2 -> 3
+Assume 2. Composition with $G$ defines a functor $\Cat{Lex}(\cat C,\cat D)\to\Cat{Ex}(\cat C\exlex,\cat D)$ which is an equivalence of categories because $G$ is an ex/lex completion. Here $\Cat{Ex}$ is the 2-category of exact categories, regular functors and natural transformations, and $\Cat{Lex}$ the 2-category of categories with finite limits, functors that preserve finite limits and natural transformations. The 2-functor $\Cat{Ex}(-,\cat D)\of\Cat{Ex}\dual\to\Cat{Cat}$ preserves adjunctions. Here $\Cat{Cat}$ is the 2-category of arbitrary categories, functors and natural transformations. In the dual $\Cat{Ex}\dual$ right adjoints become left adjoints and that is how the left Kan extensions in 3 follow from 2.
+\hide{Is this acceptable? Would it (not) be better to move everything to the 2-categorical level?}
 
-The ex/lex completion is resolvent because %do we need a lemma here?
-
-
-\hide{Point ahead to lemmas down this paper
-
-ThA -> LKE,converse,adjunct
-adjunct -> LKE
-
-
-ThB -> lccc, closubclass, ...
-
-
-}
+Since 1 implies 2 and 3, 2 implies 3 and 3 implies 1, all three statements are equivalent.
 \end{proof}
 
 Resolvent embeddings also play a role in topos theory.
@@ -106,7 +111,11 @@ Resolvent embeddings also play a role in topos theory.
 \end{theorem}
 
 \begin{proof}
-\hide{Point ahead to lemmas down this paper}
+\hide{Point ahead to lemmas down this paper
+
+ThB -> lccc, closubclass, ...
+
+}
 \end{proof}
 
 \hide{conclusion... }
@@ -114,10 +123,6 @@ Resolvent embeddings also play a role in topos theory.
 \section{Kan extensions}
 This section uses \emph{pseudo-equivalence relations} in order to construct left Kan extensions along certain resolvent embeddings.
 
-\newcommand\ri{^*}
-\newcommand\id{\mathrm{id}}
-\newcommand\dom{\mathrm{dom}}
-\newcommand\cod{\mathrm{cod}}
 \begin{definition} In any category with finite limits $\cat C$, a parallel pair $f,g\of X\to Y$ is a \key{pseudo-equivalence relation}, if there are morphisms $r:Y\to X$, $s:X\to X$ and $t:X\times_YX \to X$--where $X\times_YX = \set{(x,y)\of X\times X|f(x)=g(y)}$ is the pullback of $f$ and $g$--such that the following equations hold.
 \begin{align*}
 f\circ r &=\id_Y & g\circ r &= \id_Y\\
@@ -141,8 +146,9 @@ Two such morphisms $l=(l_0,l_1),m=(m_0,m_1):(f,g) \to (h,k)$ are \emph{equivalen
 \end{remark}
 
 
-\newcommand\di{_!}
 \begin{lemma} Let $F\of\cat C\to\cat D$ be a finite limit preserving resolvent embedding between categories with finite limits. For each exact $\cat E$ each finite limit preserving functor $G\of\cat C\to\cat E$ has a finite limit preserving left Kan extension $F\di(G)$ along $F$. Moreover, $F\di(G)F$ is naturally isomorphic to $G$.\label{resolvent to left}\end{lemma}
+
+\hide{ It may be better to restrict this lemma to the special case where $\cat E$ is the ex/lex completion of $\cat C$. }
 
 \newcommand\pser\mathbf
 \begin{proof}
