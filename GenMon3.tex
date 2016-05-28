@@ -27,6 +27,11 @@
 \newcommand\cod{\mathrm{cod}}
 \newcommand\di{_!}
 
+\newcommand\Cat\mathsf
+\newcommand\dual{^{op}}
+\newcommand\Set{\Cat{Set}}
+\newcommand\HA{\Cat{HA}}
+
 
 \begin{document}
 \begin{frontmatter}
@@ -86,8 +91,6 @@ The following are equivalent.
 \end{enumerate}
 \end{theorem}
 
-\newcommand\Cat\mathsf
-\newcommand\dual{^{op}}
 \begin{proof} 
 %1 -> 2
 Assume 1. Lemma \ref{lex ex} shows that there is a finite limit preserving left Kan extension $F\di(G)$ of $G$ along $F$ such that $F\di(G)F\simeq G$. Since $G$ is fully faithful, so is $F\di(G)$. The universal property of $G$ extends the composed isomorphisms $G \simeq F\di(G)F\simeq F\di(G)HG$ to an isomorphism $\id_{\cat C\exlex}\simeq F\di(G)H$, where $\id_{\cat C\exlex}$ is the identity functor of $\cat C\exlex$, which serves as the unit of the adjunction $H \dashv F\di(G)$. Because the universal properties of $F$ are weaker then those of $G$, the isomorphisms $HF\di(G)F\simeq HG\simeq F$ only extend to a natural transformation $HF\di(G)\to \id_{\cat C\exlex}$ which serves as the counit of the same adjunction.
@@ -105,31 +108,23 @@ Since 1 implies 2 and 3, 2 implies 3 and 3 implies 1, all three statements are e
 
 Resolvent embeddings also play a role in topos theory.
 
+\begin{definition} A \key{generic monomorphism} is a monomorphism each monomorphism is a pullback of. Let $f:X \to Y$ and $g\of V\to X$ be morphisms in a category $\cat C$. A \key{weakly dependent product} of $g$ along $f$ is a generic element (see definition \ref{generic element}) for the functor $\cat C/X(f\ri(-),g)\of (\cat C/Y)\dual\to\Set$.\end{definition}
+
 \begin{theorem} Let $F:\cat C\to\cat C\exreg$ be the ex/reg completion of a regular category $\cat C$, then the following are equivalent.
 \begin{enumerate}
-\item $\cat C$ has \emph{weak dependent products} and a \emph{generic monomorphism}. \hide{these need to be defined somewhere}
+\item $\cat C$ has \emph{weakly dependent products} and a \emph{generic monomorphism}. \hide{these need to be defined somewhere}
 \item $\cat C\exreg$ is a topos and $F$ is resolvent. 
 \end{enumerate}
 \end{theorem}
 
-\begin{definition} A \key{generic monomorphism} is a monomorphism each monomorphism is a pullback of. Let $f:X \to Y$ and $g\of V\to X$ be morphisms in a category $\cat C$. A \key{weak dependent product} of $g$ along $f$ is a morphism $h\of W\to Y$ together with a $k\of f\ri(h)\to g$ such that for each $h'\of W'\to Y$ and $k'f\ri(h')\to g$ there is an $l\of h'\to h$ such that $f\ri(l)\circ k = k'$. \end{definition}
-
-
 \begin{proof}
-Assume 1. 
+Assume 1.
 
-\hide{Point ahead to lemmas down this paper
-
-ThB -> lccc, closubclass, ThA
-
-Different breakdown
-
-Subobjects form tripos because...
-Ex/reg completion gives the same topos as the tripos-to-topos construction because...
-
+\hide{
+The 'more direct proof' from the referee ignores resolvency of the regular completion, which is one of the two most important theorems of this paper. No wonder it can afford to be so simple. It must be an evil plot to bury this most remarkable result, possibly to claim it as his/her own at a later date.
 }
 
-Assume 2. Toposes have dependent products and subobject classifiers. Resolutions induce structures that have the same properties except for uniqueness. Therefore the subobject classifier is reduced to a generic monomorphism and the dependent products are reduced to weak dependent products. Hence 1 follows from 2. %does this require a lemma?
+Assume 2. Toposes have dependent products and subobject classifiers. Resolutions induce structures that have the same properties except for uniqueness. Therefore the subobject classifier is reduced to a generic monomorphism and the dependent products are reduced to weakly dependent products. Hence 1 follows from 2. %does this require a lemma?
 \end{proof}
 
 \hide{conclusion... }
@@ -225,9 +220,28 @@ such that $f\circ e$ factors through $e'$. This category $\cat E$ is easily prov
 
 \hide{ The intuition is equational and essentially algebraic logic. Finite limit preserving functors preserve these.}
 
-\section{Toposes}
+\section{Triposes}
+Triposes generalize locales as structures to form toposes over. They are involved in the construction of elementary toposes that are not Grothendieck.
 
+\begin{definition}
+For a functor $F\of\cat C\to\Set$ a \key{generic element} is a pair $(X,x\in F(X))$ such that for each pair $(Y,y\in F(Y))$ there are $f\of X\to Y$ such that $y = F(f)(x)$. \hide{we can probably recycle this concept dozens of times, in particular as part of the definition of resolvent.}
+\end{definition}
 
+\begin{example} For a functor $F\of \cat C\to\cat D$ a resolution for an object $Y$ is a generic element of the functor $\cat C(F(-),Y)$. \end{example}
 
+\begin{example} A generic monomorphism in a category $\cat C$ with pullbacks is a monomorphism for which the subobject that consists of isomorphic monomorphisms is a generic element for the functor that sends objects to their sets of subobjects, and morphisms to their inverse image maps.\end{example}
+
+\begin{definition}
+Let $\Cat{HA}$ be the category of Heyting algebras and morphisms of Heyting algebras that have both adjoints and let $U\of\Cat{HA}\to \Set$ be the underlying set functor. For each category $\cat C$ with finite products, a \key{tripos} is a functor $T\of\cat C\dual\to \Cat{HA}$ that also satisfies the following.
+
+\begin{enumerate} 
+\item The functor $U(T(X\times -))$ has a generic element for each $X$ of $\cat C$.
+\item The adjoints $\exists_f\dashv Tf \dashv \forall_f$ commute with products, i.e. for all $f\of A\to B$ and all $g\of C\to D$,
+\[ \xymatrix{
+T(A\times D) \ar[rr]^{T(\id_A\times g)} \ar[d]_{\exists_{f\times \id_D}}&& T(A\times C)\ar[d]^{\exists_{f\times \id_C}}\\
+T(B\times D) \ar[rr]_{T(\id_B\times g)} && T(B\times C)
+}\] 
+\end{enumerate}
+\end{definition}
 \end{document}
 
