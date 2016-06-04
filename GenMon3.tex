@@ -122,6 +122,11 @@ Assume 1.
 
 \hide{
 The 'more direct proof' from the referee ignores resolvency of the regular completion, which is one of the two most important theorems of this paper. No wonder it can afford to be so simple. It must be an evil plot to bury this most remarkable result, possibly to claim it as his/her own at a later date.
+
+Does the concept of a weakly complete equivalence relation make sense in regular categories?
+Something extra that allows us to reduce any subobject of equivalent elements to a single element, possibly related to the generic monomorphisms?
+
+Let $E(X,Y)\subseteq P(X)$ consist of equivalence classes, and look for the 'join operator' $\bigvee:E(X)\to X$.
 }
 
 Assume 2. Toposes have dependent products and subobject classifiers. Resolutions induce structures that have the same properties except for uniqueness. Therefore the subobject classifier is reduced to a generic monomorphism and the dependent products are reduced to weakly dependent products. Hence 1 follows from 2. %does this require a lemma?
@@ -220,6 +225,53 @@ such that $f\circ e$ factors through $e'$. This category $\cat E$ is easily prov
 
 \hide{ The intuition is equational and essentially algebraic logic. Finite limit preserving functors preserve these.}
 
+\section{Resolutions}
+\newcommand\sub{\mathrm{sub}}
+\newcommand\tuple[1]{\langle #1 \rangle}
+One construction for the ex/reg completion takes binary relations as object and functions. This section show how to construct resolutions for these in the presence of weak exponentials and generic monomorphisms.
+
+\begin{definition} Let $\cat C$ be a regular category. Define $\cat C\exreg$ as follows. An object of $\cat C\exreg$ is a pair $\tuple{X,e\of \sub(X\times X)}$ where $X$ is an object of $\cat C$ $e$ is an \key{equivalence relation}, i.e.\ a reflexive, symmetric and transitive binary relation on $X$. A morphism $(X,e_X)\to(Y,e_Y)$ is a \key{functional relation}, i.e.\ a binary relation $f\in \sub(X\times Y)$ that satisfies the following equations of subobjects for all $x,x'\of X$ and $y,y'$ of $Y$.
+\begin{align*}
+\exists x'\of X,y'\of Y.e_X(x,x')\land f(x',y')\land e_Y(y',y) &\leq f(x,y) \\
+\top &\leq \exists y\of Y.f(x,y) \\
+f(x,y)\land f(x,y') &\leq e_Y(y,y')
+\end{align*} %closure under $e_Y$ guarantees uniqueness
+Functional relations compose as follows.
+\[ (f \circ g)(x,y) = \exists z\of \dom(f).f(z,y)\land g(x,z) \]
+The identity functional relation of $(X,e)$ is $e$.
+\end{definition}
+
+\begin{lemma} Let $\cat C$ be a regular category with weak dependent products and a generic monomorphism.
+Let $\Delta\of \cat C\to\cat C\exreg$ be the functor that satisfies. 
+\begin{align*}
+\Delta(X) &= (X,\set{\tuple{x,y}\of X\times X| x=y})\\
+\Delta(f) &= \set{\tuple{x,y}\of X\times Y|f(x)=y}
+\end{align*}
+The functor $\Delta$ is a resolvent embedding.
+\end{lemma}
+
+\begin{proof} The functor $\Delta$ is fully faithful. A functional relation between $\Delta X$ and $\Delta Y$ defines a morphism $X\to Y$ because $\cat C$ is a regular category.
+
+The generic monomorphism and weak dependent product together induce a generic element $\cat C(\Delta(-),(X,e))$, which is a regular epimorphism and hence a resolution.%how?
+The object $S(X,e)$ is a subobject of the \emph{weak power object} $P(X)$, that consist of equivalence classes of $e$. %def
+\hide{which we construct how? 
+
+Image of:
+ \[ \set{ \xi\of P(X)| \exists x\of X.\forall y\of Y. e(x,y) \iff y\in \xi }\] 
+
+The object of inhabited subobjects $P(X)$ comes from the epi-mono factorization of $X\times P(X) \to P(X)$
+
+$\cat C$ is Heyting thanks to the weak dependent products. Why not use that?
+
+The morphism $\forall_f$ takes image of the weak dependent product along $f\of X\to Y$.
+}
+
+
+\end{proof}
+
+
+\hide{ define equivalence relations for power objects separately. }
+
 \section{Triposes}
 Triposes generalize locales as structures to form toposes over. They are involved in the construction of elementary toposes that are not Grothendieck.
 
@@ -244,4 +296,5 @@ T(B\times D) \ar[rr]_{T(\id_B\times g)} && T(B\times C)
 \end{enumerate}
 \end{definition}
 \end{document}
+
 
