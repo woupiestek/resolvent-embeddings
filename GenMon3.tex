@@ -112,21 +112,23 @@ Resolvent embeddings also play a role in topos theory.
 
 \begin{theorem} Let $F:\cat C\to\cat C\exreg$ be the ex/reg completion of a regular category $\cat C$, then the following are equivalent.
 \begin{enumerate}
-\item $\cat C$ has \emph{weakly dependent products} and a \emph{generic monomorphism}. \hide{these need to be defined somewhere}
+\item $\cat C$ has \emph{weakly dependent products} and a \emph{generic monomorphism}.
 \item $\cat C\exreg$ is a topos and $F$ is resolvent. 
 \end{enumerate}
 \end{theorem}
 
+\newcommand\sub{\mathrm{sub}}
 \begin{proof}
-Assume 1.
+Assume 1. Weakly dependent products and generic monomorphism together give weak power objects in $\cat C$, which are generic binary relations $E(X)\to X\times P(X)$ for any object $X$. %lemma
+Hence if $e\in \sub(X\times X)$ is any equivalence relation, there is an $e'\of X \to P(X)$ to characterize it. The image of $e'$ is part of the domain of a resolvent embedding for the quotient $X/e$ that exists in $\cat C\exreg$, because any morphism between quotients in $\cat C\exreg$ comes from a binary relation between object of $\cat C$. %lemmata?
+Hence $F$ is resolvent.
+Exactness turns weak dependent products into dependent products and generic monomorphisms into subobject classifiers. %lemma
+Resolvency explains why $\cat C\exreg$ has weak dependent products and hence why $\cat C\exreg$ is a topos. %lemma
 
 \hide{
-The 'more direct proof' from the referee ignores resolvency of the regular completion, which is one of the two most important theorems of this paper. No wonder it can afford to be so simple. It must be an evil plot to bury this most remarkable result, possibly to claim it as his/her own at a later date.
+The 'more direct proof' from the referee ignores resolvency of the regular completion, which is one of the two most important theorems of this paper. No wonder it can afford to be so simple.
 
-Does the concept of a weakly complete equivalence relation make sense in regular categories?
-Something extra that allows us to reduce any subobject of equivalent elements to a single element, possibly related to the generic monomorphisms?
-
-Let $E(X,Y)\subseteq P(X)$ consist of equivalence classes, and look for the 'join operator' $\bigvee:E(X)\to X$.
+I will try to get here more directly, and move the relation to other work to later in this paper.
 }
 
 Assume 2. Toposes have dependent products and subobject classifiers. Resolutions induce structures that have the same properties except for uniqueness. Therefore the subobject classifier is reduced to a generic monomorphism and the dependent products are reduced to weakly dependent products. Hence 1 follows from 2. %does this require a lemma?
@@ -226,7 +228,7 @@ such that $f\circ e$ factors through $e'$. This category $\cat E$ is easily prov
 \hide{ The intuition is equational and essentially algebraic logic. Finite limit preserving functors preserve these.}
 
 \section{Resolutions}
-\newcommand\sub{\mathrm{sub}}
+
 \newcommand\tuple[1]{\langle #1 \rangle}
 One construction for the ex/reg completion takes binary relations as object and functions. This section show how to construct resolutions for these in the presence of weak exponentials and generic monomorphisms.
 
